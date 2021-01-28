@@ -1,17 +1,17 @@
 employees
 -
 emp_no INTEGER PK
-emp_title_id VARCHAR
-birth_date VARCHAR
+emp_title_id VARCHAR FK >- titles.title_id
+birth_date DATE
 first_name VARCHAR
 last_name VARCHAR
 sex VARCHAR
-hire_date VARCHAR
+hire_date DATE
 
 
 titles
 -
-title_id INTEGER PK FK >- employees.emp_title_id
+title_id VARCHAR PK
 title VARCHAR
 
 salaries
@@ -23,13 +23,13 @@ salary INTEGER
 
 dept_manager
 -
-dept_no VARCHAR FK >- departments.dept_no
+dept_no VARCHAR PK FK >- departments.dept_no
 emp_no INTEGER PK FK >- employees.emp_no
 
 dept_emp
 -
 emp_no INTEGER PK FK >- employees.emp_no
-dept_no VARCHAR FK >- departments.dept_no
+dept_no VARCHAR PK FK >- departments.dept_no
 
 departments
 -
