@@ -55,4 +55,11 @@ on dept_emp.emp_no = e.emp_no
 inner join departments as de
 on dept_emp.dept_no = de.dept_no
 where de.dept_name = 'Sales'
-or de.dept_name = 'Development';
+or de.dept_name = 'Development';	
+
+-- 8. In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
+select last_name,
+count (last_name) as "frequency"
+from employees
+group by last_name
+order by frequency Desc;
