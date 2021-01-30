@@ -1,5 +1,5 @@
- DROP TABLE IF EXISTS employees, titles, 
-	salaries, dept_manager, dept_emp, departments;
+DROP TABLE IF EXISTS employees, titles, 
+ 	salaries, dept_manager, dept_emp, departments;
 
 CREATE TABLE employees (
     emp_no INTEGER   NOT NULL,
@@ -24,26 +24,17 @@ CREATE TABLE titles (
 
 CREATE TABLE salaries (
     emp_no INTEGER   NOT NULL,
-    salary INTEGER   NOT NULL,
-    CONSTRAINT pk_salaries PRIMARY KEY (
-        emp_no
-     )
+    salary INTEGER   NOT NULL
 );
 
 CREATE TABLE dept_manager (
     dept_no VARCHAR   NOT NULL,
-    emp_no INTEGER   NOT NULL,
-    CONSTRAINT pk_dept_manager PRIMARY KEY (
-        dept_no,emp_no
-     )
+    emp_no INTEGER   NOT NULL
 );
 
 CREATE TABLE dept_emp (
     emp_no INTEGER   NOT NULL,
-    dept_no VARCHAR   NOT NULL,
-    CONSTRAINT pk_dept_emp PRIMARY KEY (
-        emp_no,dept_no
-     )
+    dept_no VARCHAR   NOT NULL
 );
 
 CREATE TABLE departments (
@@ -72,4 +63,13 @@ REFERENCES employees (emp_no);
 ALTER TABLE dept_emp ADD CONSTRAINT fk_dept_emp_dept_no FOREIGN KEY(dept_no)
 REFERENCES departments (dept_no);
 
+--testing that all charts were loaded properly 
+select *
+from employees
 
+-- 1. List the following details of each employee: employee number, last name, first name, sex, and salary.
+select e.emp_no, e.last_name, e.first_name, e.sex, s.salary
+from employees as e
+inner join salaries as s
+on s.emp_no = e.emp_no
+order by s.emp_no;
