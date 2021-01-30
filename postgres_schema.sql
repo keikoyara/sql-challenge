@@ -1,6 +1,3 @@
-DROP TABLE IF EXISTS employees, titles, 
- 	salaries, dept_manager, dept_emp, departments;
-
 CREATE TABLE employees (
     emp_no INTEGER   NOT NULL,
     emp_title_id VARCHAR   NOT NULL,
@@ -63,13 +60,4 @@ REFERENCES employees (emp_no);
 ALTER TABLE dept_emp ADD CONSTRAINT fk_dept_emp_dept_no FOREIGN KEY(dept_no)
 REFERENCES departments (dept_no);
 
---testing that all charts were loaded properly 
-select *
-from employees
 
--- 1. List the following details of each employee: employee number, last name, first name, sex, and salary.
-select e.emp_no, e.last_name, e.first_name, e.sex, s.salary
-from employees as e
-inner join salaries as s
-on s.emp_no = e.emp_no
-order by s.emp_no;
