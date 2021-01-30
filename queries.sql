@@ -15,3 +15,25 @@ from employees as e
 where extract (year from hire_date) = 1986;
 
 -- 3.List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name.
+select dept_manager.dept_no, departments.dept_name, dept_manager.emp_no, employees.last_name, employees.first_name
+from dept_manager
+inner join departments
+on dept_manager.dept_no = departments.dept_no
+inner join employees
+on dept_manager.emp_no = employees.emp_no;
+
+
+-- 4. List the department of each employee with the following information: employee number, last name, first name, and department name.
+select e.emp_no, e.last_name, e.first_name, d.dept_name
+from employees as e
+left join dept_emp as de
+on e.emp_no = de.emp_no
+inner join departments as d
+on de.dept_no = d.dept_no
+order by e.emp_no;
+
+-- 5. List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B.
+select first_name, last_name, sex
+from employees 
+where (first_name = 'Hercules') and (lower(last_name) like 'b%')
+order by last_name;
