@@ -38,7 +38,7 @@ from employees
 where (first_name = 'Hercules') and (lower(last_name) like 'b%')
 order by last_name;
 
--- 6.List all employees in the Sales department, including their employee number, last name, first name, and department name.
+-- 6. List all employees in the Sales department, including their employee number, last name, first name, and department name.
 select dept_emp.emp_no, e.last_name, e.first_name, de.dept_name
 from dept_emp
 inner join employees as e 
@@ -47,4 +47,12 @@ join departments as de
 on dept_emp.dept_no = de.dept_no
 where de.dept_name = 'Sales';
 
-
+-- 7. List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name. 
+select dept_emp.emp_no, e.last_name, e.first_name, de.dept_name
+from dept_emp
+inner join employees as e
+on dept_emp.emp_no = e.emp_no
+inner join departments as de
+on dept_emp.dept_no = de.dept_no
+where de.dept_name = 'Sales'
+or de.dept_name = 'Development';
